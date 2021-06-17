@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FinalOdeviDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="FinalOdeviDBEntities2" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Bolumler" EntityType="FinalOdeviDBModel.Bolumler" />
+    <EntitySet Name="Dersler" EntityType="FinalOdeviDBModel.Dersler" />
+    <EntitySet Name="Konular" EntityType="FinalOdeviDBModel.Konular" />
+    <EntitySet Name="Ogrenciler" EntityType="FinalOdeviDBModel.Ogrenciler" />
+    <EntitySet Name="Ogretmenler" EntityType="FinalOdeviDBModel.Ogretmenler" />
+    <EntitySet Name="secilenProjeler" EntityType="FinalOdeviDBModel.secilenProjeler" />
+    <EntitySet Name="Uye" EntityType="FinalOdeviDBModel.Uye" />
+    <EntitySet Name="Yoneticiler" EntityType="FinalOdeviDBModel.Yoneticiler" />
+    <AssociationSet Name="FK_Ogrenciler_ToBolumler" Association="FinalOdeviDBModel.FK_Ogrenciler_ToBolumler">
+      <End Role="Bolumler" EntitySet="Bolumler" />
+      <End Role="Ogrenciler" EntitySet="Ogrenciler" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Dersler_ToOgretmenler" Association="FinalOdeviDBModel.FK_Dersler_ToOgretmenler">
+      <End Role="Ogretmenler" EntitySet="Ogretmenler" />
+      <End Role="Dersler" EntitySet="Dersler" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Konular_ToDers" Association="FinalOdeviDBModel.FK_Konular_ToDers">
+      <End Role="Dersler" EntitySet="Dersler" />
+      <End Role="Konular" EntitySet="Konular" />
+    </AssociationSet>
+    <AssociationSet Name="FK_secilenProjeler_ToDersler" Association="FinalOdeviDBModel.FK_secilenProjeler_ToDersler">
+      <End Role="Dersler" EntitySet="Dersler" />
+      <End Role="secilenProjeler" EntitySet="secilenProjeler" />
+    </AssociationSet>
+    <AssociationSet Name="FK_secilenProjeler_ToKonular" Association="FinalOdeviDBModel.FK_secilenProjeler_ToKonular">
+      <End Role="Konular" EntitySet="Konular" />
+      <End Role="secilenProjeler" EntitySet="secilenProjeler" />
+    </AssociationSet>
+    <AssociationSet Name="FK_secilenProjeler_ToOgrenci" Association="FinalOdeviDBModel.FK_secilenProjeler_ToOgrenci">
+      <End Role="Ogrenciler" EntitySet="Ogrenciler" />
+      <End Role="secilenProjeler" EntitySet="secilenProjeler" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Bolumler">
+    <Key>
+      <PropertyRef Name="bolumId" />
+    </Key>
+    <Property Name="bolumId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="bolumAd" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Ogrenciler" Relationship="FinalOdeviDBModel.FK_Ogrenciler_ToBolumler" FromRole="Bolumler" ToRole="Ogrenciler" />
+  </EntityType>
+  <EntityType Name="Dersler">
+    <Key>
+      <PropertyRef Name="dersId" />
+    </Key>
+    <Property Name="dersId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="dersAd" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="dersKod" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="dersEgitimGorevlisiId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="dersEgitimGorevlisiAd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Ogretmenler" Relationship="FinalOdeviDBModel.FK_Dersler_ToOgretmenler" FromRole="Dersler" ToRole="Ogretmenler" />
+    <NavigationProperty Name="Konular" Relationship="FinalOdeviDBModel.FK_Konular_ToDers" FromRole="Dersler" ToRole="Konular" />
+    <NavigationProperty Name="secilenProjeler" Relationship="FinalOdeviDBModel.FK_secilenProjeler_ToDersler" FromRole="Dersler" ToRole="secilenProjeler" />
+  </EntityType>
+  <EntityType Name="Konular">
+    <Key>
+      <PropertyRef Name="konuId" />
+    </Key>
+    <Property Name="konuId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="konuBaslik" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="konuAciklama" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="konuDersId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="konuDersAd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Dersler" Relationship="FinalOdeviDBModel.FK_Konular_ToDers" FromRole="Konular" ToRole="Dersler" />
+    <NavigationProperty Name="secilenProjeler" Relationship="FinalOdeviDBModel.FK_secilenProjeler_ToKonular" FromRole="Konular" ToRole="secilenProjeler" />
+  </EntityType>
+  <EntityType Name="Ogrenciler">
+    <Key>
+      <PropertyRef Name="ogrId" />
+    </Key>
+    <Property Name="ogrId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ogrNo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ogrAdSoyad" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ogrBolumId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ogrBolumAd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Bolumler" Relationship="FinalOdeviDBModel.FK_Ogrenciler_ToBolumler" FromRole="Ogrenciler" ToRole="Bolumler" />
+    <NavigationProperty Name="secilenProjeler" Relationship="FinalOdeviDBModel.FK_secilenProjeler_ToOgrenci" FromRole="Ogrenciler" ToRole="secilenProjeler" />
+  </EntityType>
+  <EntityType Name="Ogretmenler">
+    <Key>
+      <PropertyRef Name="ogretmenId" />
+    </Key>
+    <Property Name="ogretmenId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ogretmenTc" Type="String" Nullable="false" MaxLength="11" FixedLength="true" Unicode="true" />
+    <Property Name="ogretmenAdiSoyadi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Dersler" Relationship="FinalOdeviDBModel.FK_Dersler_ToOgretmenler" FromRole="Ogretmenler" ToRole="Dersler" />
+  </EntityType>
+  <EntityType Name="secilenProjeler">
+    <Key>
+      <PropertyRef Name="secProjeId" />
+    </Key>
+    <Property Name="secProjeId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="secProjeOgrId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="secProjeDersId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="secProjeKonuId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Dersler" Relationship="FinalOdeviDBModel.FK_secilenProjeler_ToDersler" FromRole="secilenProjeler" ToRole="Dersler" />
+    <NavigationProperty Name="Konular" Relationship="FinalOdeviDBModel.FK_secilenProjeler_ToKonular" FromRole="secilenProjeler" ToRole="Konular" />
+    <NavigationProperty Name="Ogrenciler" Relationship="FinalOdeviDBModel.FK_secilenProjeler_ToOgrenci" FromRole="secilenProjeler" ToRole="Ogrenciler" />
+  </EntityType>
+  <EntityType Name="Uye">
+    <Key>
+      <PropertyRef Name="uyeId" />
+    </Key>
+    <Property Name="uyeId" Type="Int32" Nullable="false" />
+    <Property Name="KullaniciAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Sifre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AdSoyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UyeAdmin" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Yoneticiler">
+    <Key>
+      <PropertyRef Name="yoneticiId" />
+    </Key>
+    <Property Name="yoneticiId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="yoneticiTC" Type="String" Nullable="false" MaxLength="11" FixedLength="true" Unicode="true" />
+    <Property Name="yoneticiAdSoyad" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="FK_Ogrenciler_ToBolumler">
+    <End Type="FinalOdeviDBModel.Bolumler" Role="Bolumler" Multiplicity="1" />
+    <End Type="FinalOdeviDBModel.Ogrenciler" Role="Ogrenciler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bolumler">
+        <PropertyRef Name="bolumId" />
+      </Principal>
+      <Dependent Role="Ogrenciler">
+        <PropertyRef Name="ogrBolumId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Dersler_ToOgretmenler">
+    <End Type="FinalOdeviDBModel.Ogretmenler" Role="Ogretmenler" Multiplicity="1" />
+    <End Type="FinalOdeviDBModel.Dersler" Role="Dersler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ogretmenler">
+        <PropertyRef Name="ogretmenId" />
+      </Principal>
+      <Dependent Role="Dersler">
+        <PropertyRef Name="dersEgitimGorevlisiId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Konular_ToDers">
+    <End Type="FinalOdeviDBModel.Dersler" Role="Dersler" Multiplicity="1" />
+    <End Type="FinalOdeviDBModel.Konular" Role="Konular" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dersler">
+        <PropertyRef Name="dersId" />
+      </Principal>
+      <Dependent Role="Konular">
+        <PropertyRef Name="konuDersId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_secilenProjeler_ToDersler">
+    <End Type="FinalOdeviDBModel.Dersler" Role="Dersler" Multiplicity="1" />
+    <End Type="FinalOdeviDBModel.secilenProjeler" Role="secilenProjeler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dersler">
+        <PropertyRef Name="dersId" />
+      </Principal>
+      <Dependent Role="secilenProjeler">
+        <PropertyRef Name="secProjeDersId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_secilenProjeler_ToKonular">
+    <End Type="FinalOdeviDBModel.Konular" Role="Konular" Multiplicity="1" />
+    <End Type="FinalOdeviDBModel.secilenProjeler" Role="secilenProjeler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Konular">
+        <PropertyRef Name="konuId" />
+      </Principal>
+      <Dependent Role="secilenProjeler">
+        <PropertyRef Name="secProjeKonuId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_secilenProjeler_ToOgrenci">
+    <End Type="FinalOdeviDBModel.Ogrenciler" Role="Ogrenciler" Multiplicity="1" />
+    <End Type="FinalOdeviDBModel.secilenProjeler" Role="secilenProjeler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ogrenciler">
+        <PropertyRef Name="ogrId" />
+      </Principal>
+      <Dependent Role="secilenProjeler">
+        <PropertyRef Name="secProjeOgrId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

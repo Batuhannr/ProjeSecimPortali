@@ -1,0 +1,28 @@
+<mat-toolbar color="primary">
+  <span>{{dialogBaslik}}</span>
+</mat-toolbar>
+<div class="container">
+  <form [formGroup]="frm">
+    
+  <mat-form-field appearance="outline" >
+    <mat-select placeholder="Öğrenci Id" formControlName="secProjeOgrId" name="secProjeOgrId" (selectionChange)="OgrenciSec($event.value)">
+      <mat-option [value]="ogrenci.ogrId" *ngFor="let ogrenci of ogrenciler"> {{ogrenci.ogrAdSoyad}}</mat-option>
+    </mat-select>
+</mat-form-field>
+
+  <mat-form-field appearance="outline" >
+    <mat-select placeholder="Ders Id" formControlName="secProjeDersId" name="secProjeDersId" (selectionChange)="DersSec($event.value)">
+      <mat-option [value]="ders.dersId" *ngFor="let ders of dersler"> {{ders.dersAd}}</mat-option>
+    </mat-select>
+</mat-form-field>
+
+  <mat-form-field appearance="outline" >
+    <mat-select placeholder="Konu Id" formControlName="secProjeKonuId" name="secProjeKonuId" (selectionChange)="KonuSec($event.value)">
+      <mat-option [value]="konu.konuId" *ngFor="let konu of konular"> {{konu.konuBaslik}}</mat-option>
+    </mat-select>
+</mat-form-field>
+</form>
+<button mat-raised-button color="primary" [disabled]="frm.invalid" (click)="dialogRef.close(frm.value)">Kaydet</button>&nbsp;
+<button mat-raised-button color="warn" (click)="dialogRef.close()">İptal</button>
+
+</div>

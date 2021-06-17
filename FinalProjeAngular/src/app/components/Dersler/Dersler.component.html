@@ -1,0 +1,46 @@
+<div class="container">
+  <h1>Dersler</h1>
+  <button mat-fab color="primary">
+    <mat-icon aria-label="label" matTooltip="Ders Ekle" (click)="DersEkle()">add</mat-icon>
+  </button>
+  <p>&nbsp;</p>
+  <mat-form-field appearance="outline">
+    <input matInput placeholder="Aranacak Bilgi Giriniz">
+  </mat-form-field>
+  <mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+    <ng-container matColumnDef="dersKod">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Ders Kodu
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{ kayit.dersKod | uppercase }}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="dersAd">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Ders Adı
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{kayit.dersAd}} </mat-cell>
+    </ng-container>
+    
+    <ng-container matColumnDef="ogretmenAdiSoyadi">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Eğitim Görevlisi
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{kayit.ogretmenBilgi.ogretmenAdiSoyadi}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="islemler">
+      <mat-header-cell *matHeaderCellDef> İşlemler
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit">
+        <button mat-icon-button>
+          <mat-icon aria-label="label" color="warn" matTooltip="Ders'e Ait Konular" [routerLink]="['/derskonu',kayit.dersId]">assignment</mat-icon>
+        </button>
+      <button mat-icon-button>
+        <mat-icon aria-label="label" color="primary" matTooltip="Ders Düzenle" (click)="DersDuzenle(kayit)">edit</mat-icon>
+      </button>
+      <button mat-icon-button>
+        <mat-icon aria-label="label" color="warn" matTooltip="Ders Sil" (click)="DersSil(kayit)">delete</mat-icon>
+      </button>
+      
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>

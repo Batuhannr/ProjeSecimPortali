@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="FinalOdeviDBModelStoreContainer" CdmEntityContainer="FinalOdeviDBEntities2">
+    <EntitySetMapping Name="Bolumler">
+      <EntityTypeMapping TypeName="FinalOdeviDBModel.Bolumler">
+        <MappingFragment StoreEntitySet="Bolumler">
+          <ScalarProperty Name="bolumAd" ColumnName="bolumAd" />
+          <ScalarProperty Name="bolumId" ColumnName="bolumId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Dersler">
+      <EntityTypeMapping TypeName="FinalOdeviDBModel.Dersler">
+        <MappingFragment StoreEntitySet="Dersler">
+          <ScalarProperty Name="dersEgitimGorevlisiAd" ColumnName="dersEgitimGorevlisiAd" />
+          <ScalarProperty Name="dersEgitimGorevlisiId" ColumnName="dersEgitimGorevlisiId" />
+          <ScalarProperty Name="dersKod" ColumnName="dersKod" />
+          <ScalarProperty Name="dersAd" ColumnName="dersAd" />
+          <ScalarProperty Name="dersId" ColumnName="dersId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Konular">
+      <EntityTypeMapping TypeName="FinalOdeviDBModel.Konular">
+        <MappingFragment StoreEntitySet="Konular">
+          <ScalarProperty Name="konuDersAd" ColumnName="konuDersAd" />
+          <ScalarProperty Name="konuDersId" ColumnName="konuDersId" />
+          <ScalarProperty Name="konuAciklama" ColumnName="konuAciklama" />
+          <ScalarProperty Name="konuBaslik" ColumnName="konuBaslik" />
+          <ScalarProperty Name="konuId" ColumnName="konuId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ogrenciler">
+      <EntityTypeMapping TypeName="FinalOdeviDBModel.Ogrenciler">
+        <MappingFragment StoreEntitySet="Ogrenciler">
+          <ScalarProperty Name="ogrBolumAd" ColumnName="ogrBolumAd" />
+          <ScalarProperty Name="ogrBolumId" ColumnName="ogrBolumId" />
+          <ScalarProperty Name="ogrAdSoyad" ColumnName="ogrAdSoyad" />
+          <ScalarProperty Name="ogrNo" ColumnName="ogrNo" />
+          <ScalarProperty Name="ogrId" ColumnName="ogrId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ogretmenler">
+      <EntityTypeMapping TypeName="FinalOdeviDBModel.Ogretmenler">
+        <MappingFragment StoreEntitySet="Ogretmenler">
+          <ScalarProperty Name="ogretmenAdiSoyadi" ColumnName="ogretmenAdiSoyadi" />
+          <ScalarProperty Name="ogretmenTc" ColumnName="ogretmenTc" />
+          <ScalarProperty Name="ogretmenId" ColumnName="ogretmenId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="secilenProjeler">
+      <EntityTypeMapping TypeName="FinalOdeviDBModel.secilenProjeler">
+        <MappingFragment StoreEntitySet="secilenProjeler">
+          <ScalarProperty Name="secProjeKonuId" ColumnName="secProjeKonuId" />
+          <ScalarProperty Name="secProjeDersId" ColumnName="secProjeDersId" />
+          <ScalarProperty Name="secProjeOgrId" ColumnName="secProjeOgrId" />
+          <ScalarProperty Name="secProjeId" ColumnName="secProjeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Uye">
+      <EntityTypeMapping TypeName="FinalOdeviDBModel.Uye">
+        <MappingFragment StoreEntitySet="Uye">
+          <ScalarProperty Name="UyeAdmin" ColumnName="UyeAdmin" />
+          <ScalarProperty Name="AdSoyad" ColumnName="AdSoyad" />
+          <ScalarProperty Name="Sifre" ColumnName="Sifre" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="KullaniciAdi" ColumnName="KullaniciAdi" />
+          <ScalarProperty Name="uyeId" ColumnName="uyeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Yoneticiler">
+      <EntityTypeMapping TypeName="FinalOdeviDBModel.Yoneticiler">
+        <MappingFragment StoreEntitySet="Yoneticiler">
+          <ScalarProperty Name="yoneticiAdSoyad" ColumnName="yoneticiAdSoyad" />
+          <ScalarProperty Name="yoneticiTC" ColumnName="yoneticiTC" />
+          <ScalarProperty Name="yoneticiId" ColumnName="yoneticiId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

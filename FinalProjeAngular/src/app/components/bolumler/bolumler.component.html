@@ -1,0 +1,41 @@
+<div class="container">
+  <h1>Bölümler</h1>
+  <button mat-fab color="primary">
+    <mat-icon aria-label="label" matTooltip="Bölüm Ekle" (click)="BolumEkle()">add</mat-icon>
+  </button>
+  <p>&nbsp;</p>
+  <mat-form-field appearance="outline">
+    <input matInput placeholder="Aranacak Bilgi Giriniz" >
+  </mat-form-field>
+  <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="bolumAd">
+      <mat-header-cell *matHeaderCellDef> Bölüm Adı
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{kayit.bolumAd}} </mat-cell>
+      
+    </ng-container>
+    <ng-container matColumnDef="islemler">
+      <mat-header-cell *matHeaderCellDef> İşlemler
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> 
+        <button mat-icon-button>
+          <mat-icon aria-label="label" color="primary" matTooltip="Bölümdeki Öğrenciler" [routerLink]="['/bolumogrenci',kayit.bolumId]">assignment</mat-icon>
+        </button>
+      <button mat-icon-button>
+        <mat-icon aria-label="label" color="primary" matTooltip="Bölüm Düzenle" (click)="BolumDuzenle(kayit)">edit</mat-icon>
+      </button>
+      <button mat-icon-button>
+        <mat-icon aria-label="label" color="warn" matTooltip="Bölüm Sil" (click)="BolumSil(kayit)">delete</mat-icon>
+      </button>
+      
+      
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    
+  </mat-table>
+  <mat-paginator 
+    [pageSizeOptions]="[10, 25, 100]">
+  </mat-paginator>
+</div>

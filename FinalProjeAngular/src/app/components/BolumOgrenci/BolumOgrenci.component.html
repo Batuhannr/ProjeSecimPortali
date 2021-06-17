@@ -1,0 +1,32 @@
+<div class="container">
+  <h1>BÖLÜMDEKİ ÖĞRENCİLER</h1>
+  <button mat-fab color="primary" matTooltip="Geri Git" [routerLink]="['/bolumler']">
+    <mat-icon aria-label="label">arrow_back</mat-icon>  
+  </button>
+  <mat-table [dataSource]="dataSource">
+    <ng-container matColumnDef="ogrNo">
+      <mat-header-cell *matHeaderCellDef > Konu
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{kayit.ogrNo}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="ogrAdSoyad">
+      <mat-header-cell *matHeaderCellDef > Ders
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{kayit.ogrAdSoyad}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="bolumAd">
+      <mat-header-cell *matHeaderCellDef > Ders
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{kayit.bolumBilgi.bolumAd}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="islemler">
+      <mat-header-cell *matHeaderCellDef> İşlemler
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> 
+      </mat-cell>
+    </ng-container>
+  
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>

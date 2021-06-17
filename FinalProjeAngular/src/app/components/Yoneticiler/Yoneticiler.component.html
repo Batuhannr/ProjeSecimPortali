@@ -1,0 +1,43 @@
+<div class="container">
+  <h1>Yöneticiler</h1>
+  <button mat-fab color="primary">
+    <mat-icon aria-label="label" matTooltip="Yonetici Ekle" (click)="YoneticiEkle()">add</mat-icon>
+  </button>
+  <p>&nbsp;</p>
+  <mat-form-field appearance="outline">
+    <input matInput placeholder="Aranacak Yöneticiyi Giriniz"(keyup)="YoneticiFiltrele($event)">
+  </mat-form-field>
+  
+  <mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort >
+    
+    <ng-container matColumnDef="yoneticiTC" >
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Yonetici TC
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{kayit.yoneticiTC}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="yoneticiAdSoyad" >
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Yonetici Ad Soyad
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{kayit.yoneticiAdSoyad}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="islemler">
+      <mat-header-cell *matHeaderCellDef> İşlemler
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> 
+      <button mat-icon-button>
+        <mat-icon aria-label="label" color="primary" matTooltip="Yönetici Düzenle" (click)="YoneticiDuzenle(kayit)">edit</mat-icon>
+      </button>
+      <button mat-icon-button>
+        <mat-icon aria-label="label" color="warn" matTooltip="Yönetici Sil" (click)="YoneticiSil(kayit)">delete</mat-icon>
+      </button>
+      
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    
+  </mat-table>
+  <mat-paginator 
+    [pageSizeOptions]="[10, 25, 100]">
+  </mat-paginator>
+</div>

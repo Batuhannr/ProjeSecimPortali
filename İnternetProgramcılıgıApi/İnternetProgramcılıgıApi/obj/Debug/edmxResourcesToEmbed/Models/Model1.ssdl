@@ -1,0 +1,182 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FinalOdeviDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Bolumler">
+    <Key>
+      <PropertyRef Name="bolumId" />
+    </Key>
+    <Property Name="bolumId" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="bolumAd" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Dersler">
+    <Key>
+      <PropertyRef Name="dersId" />
+    </Key>
+    <Property Name="dersId" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="dersAd" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="dersKod" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="dersEgitimGorevlisiId" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="dersEgitimGorevlisiAd" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Konular">
+    <Key>
+      <PropertyRef Name="konuId" />
+    </Key>
+    <Property Name="konuId" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="konuBaslik" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="konuAciklama" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="konuDersId" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="konuDersAd" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Ogrenciler">
+    <Key>
+      <PropertyRef Name="ogrId" />
+    </Key>
+    <Property Name="ogrId" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ogrNo" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ogrAdSoyad" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ogrBolumId" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ogrBolumAd" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Ogretmenler">
+    <Key>
+      <PropertyRef Name="ogretmenId" />
+    </Key>
+    <Property Name="ogretmenId" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ogretmenTc" Type="nchar" MaxLength="11" Nullable="false" />
+    <Property Name="ogretmenAdiSoyadi" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="secilenProjeler">
+    <Key>
+      <PropertyRef Name="secProjeId" />
+    </Key>
+    <Property Name="secProjeId" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="secProjeOgrId" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="secProjeDersId" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="secProjeKonuId" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Uye">
+    <Key>
+      <PropertyRef Name="uyeId" />
+    </Key>
+    <Property Name="uyeId" Type="int" Nullable="false" />
+    <Property Name="KullaniciAdi" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="Sifre" Type="nvarchar" MaxLength="50" />
+    <Property Name="AdSoyad" Type="nvarchar" MaxLength="50" />
+    <Property Name="UyeAdmin" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Yoneticiler">
+    <Key>
+      <PropertyRef Name="yoneticiId" />
+    </Key>
+    <Property Name="yoneticiId" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="yoneticiTC" Type="nchar" MaxLength="11" Nullable="false" />
+    <Property Name="yoneticiAdSoyad" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Dersler_ToOgretmenler">
+    <End Role="Ogretmenler" Type="Self.Ogretmenler" Multiplicity="1" />
+    <End Role="Dersler" Type="Self.Dersler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ogretmenler">
+        <PropertyRef Name="ogretmenId" />
+      </Principal>
+      <Dependent Role="Dersler">
+        <PropertyRef Name="dersEgitimGorevlisiId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Konular_ToDers">
+    <End Role="Dersler" Type="Self.Dersler" Multiplicity="1" />
+    <End Role="Konular" Type="Self.Konular" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dersler">
+        <PropertyRef Name="dersId" />
+      </Principal>
+      <Dependent Role="Konular">
+        <PropertyRef Name="konuDersId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ogrenciler_ToBolumler">
+    <End Role="Bolumler" Type="Self.Bolumler" Multiplicity="1" />
+    <End Role="Ogrenciler" Type="Self.Ogrenciler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bolumler">
+        <PropertyRef Name="bolumId" />
+      </Principal>
+      <Dependent Role="Ogrenciler">
+        <PropertyRef Name="ogrBolumId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_secilenProjeler_ToDersler">
+    <End Role="Dersler" Type="Self.Dersler" Multiplicity="1" />
+    <End Role="secilenProjeler" Type="Self.secilenProjeler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dersler">
+        <PropertyRef Name="dersId" />
+      </Principal>
+      <Dependent Role="secilenProjeler">
+        <PropertyRef Name="secProjeDersId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_secilenProjeler_ToKonular">
+    <End Role="Konular" Type="Self.Konular" Multiplicity="1" />
+    <End Role="secilenProjeler" Type="Self.secilenProjeler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Konular">
+        <PropertyRef Name="konuId" />
+      </Principal>
+      <Dependent Role="secilenProjeler">
+        <PropertyRef Name="secProjeKonuId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_secilenProjeler_ToOgrenci">
+    <End Role="Ogrenciler" Type="Self.Ogrenciler" Multiplicity="1" />
+    <End Role="secilenProjeler" Type="Self.secilenProjeler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ogrenciler">
+        <PropertyRef Name="ogrId" />
+      </Principal>
+      <Dependent Role="secilenProjeler">
+        <PropertyRef Name="secProjeOgrId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="FinalOdeviDBModelStoreContainer">
+    <EntitySet Name="Bolumler" EntityType="Self.Bolumler" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Dersler" EntityType="Self.Dersler" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Konular" EntityType="Self.Konular" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ogrenciler" EntityType="Self.Ogrenciler" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ogretmenler" EntityType="Self.Ogretmenler" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="secilenProjeler" EntityType="Self.secilenProjeler" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Uye" EntityType="Self.Uye" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Yoneticiler" EntityType="Self.Yoneticiler" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Dersler_ToOgretmenler" Association="Self.FK_Dersler_ToOgretmenler">
+      <End Role="Ogretmenler" EntitySet="Ogretmenler" />
+      <End Role="Dersler" EntitySet="Dersler" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Konular_ToDers" Association="Self.FK_Konular_ToDers">
+      <End Role="Dersler" EntitySet="Dersler" />
+      <End Role="Konular" EntitySet="Konular" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ogrenciler_ToBolumler" Association="Self.FK_Ogrenciler_ToBolumler">
+      <End Role="Bolumler" EntitySet="Bolumler" />
+      <End Role="Ogrenciler" EntitySet="Ogrenciler" />
+    </AssociationSet>
+    <AssociationSet Name="FK_secilenProjeler_ToDersler" Association="Self.FK_secilenProjeler_ToDersler">
+      <End Role="Dersler" EntitySet="Dersler" />
+      <End Role="secilenProjeler" EntitySet="secilenProjeler" />
+    </AssociationSet>
+    <AssociationSet Name="FK_secilenProjeler_ToKonular" Association="Self.FK_secilenProjeler_ToKonular">
+      <End Role="Konular" EntitySet="Konular" />
+      <End Role="secilenProjeler" EntitySet="secilenProjeler" />
+    </AssociationSet>
+    <AssociationSet Name="FK_secilenProjeler_ToOgrenci" Association="Self.FK_secilenProjeler_ToOgrenci">
+      <End Role="Ogrenciler" EntitySet="Ogrenciler" />
+      <End Role="secilenProjeler" EntitySet="secilenProjeler" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

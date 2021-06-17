@@ -1,0 +1,34 @@
+<div class="container">
+  <h3><b>Öğrenci Adı Soyadı : </b>{{secOgrenci.ogrAdSoyad}} </h3>
+  <h3><b>Öğrenci No : </b>{{secOgrenci.ogrNo}} </h3>
+  <button mat-fab color="primary" matTooltip="Geri Git" [routerLink]="['/ogrenciler']">
+    <mat-icon aria-label="label">arrow_back</mat-icon>  
+  </button>
+  <mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+    <ng-container matColumnDef="secProjeOgrId">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Öğrenci Numarası
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{kayit.ogrBilgi.ogrNo}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="secProjeDersId">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Ders
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{kayit.dersBilgi.dersAd}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="secProjeKonuId">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Konu
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{kayit.konuBilgi.konuBaslik}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="islemler">
+      <mat-header-cell *matHeaderCellDef> İşlemler
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> 
+      
+      </mat-cell>
+    </ng-container>
+  
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>

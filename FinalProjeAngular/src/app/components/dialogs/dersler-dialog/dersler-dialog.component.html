@@ -1,0 +1,26 @@
+<mat-toolbar color="primary">
+  <span>{{dialogBaslik}}</span>
+</mat-toolbar>
+<div class="container">
+  <form [formGroup]="frm">
+    <mat-form-field appearance="outline">
+      <mat-label>Ders Kodu</mat-label>
+      <input matInput placeholder="Ders Kodu" formControlName="dersKod" name="dersKod" type="text">
+    </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Ders Adı</mat-label>
+    <input matInput placeholder="Ders Adı" formControlName="dersAd" name="dersAd" required type="text" >
+  </mat-form-field>
+  <mat-form-field appearance="outline" >
+    <mat-select  placeholder="Eğitim Görevlisi" formControlName="dersEgitimGorevlisiId" name="dersEgitimGorevlisiId" (selectionChange)="OgretmenSec($event.value)">
+      <mat-option [value]="ogretmen.ogretmenId" *ngFor="let ogretmen of ogretmenler"> {{ogretmen.ogretmenAdiSoyadi}}</mat-option>
+    </mat-select> 
+</mat-form-field>
+
+
+  
+</form>
+<button mat-raised-button color="primary" [disabled]="frm.invalid" (click)="dialogRef.close(frm.value)">Kaydet</button>&nbsp;
+<button mat-raised-button color="warn" (click)="dialogRef.close()">İptal</button>
+
+</div>

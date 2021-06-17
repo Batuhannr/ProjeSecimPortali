@@ -1,0 +1,39 @@
+<div class="container">
+  <h1>Seçilen Projeler</h1>
+  <button mat-fab color="primary">
+    <mat-icon aria-label="label" matTooltip="Seçilen Proje Ekle" (click)="SecilenProjeEkle()">add</mat-icon>
+  </button>
+  <p>&nbsp;</p>
+  <mat-form-field appearance="outline">
+    <input matInput placeholder="Aranacak Değer Giriniz" (keyup)="SecilenProjeFiltrele($event)">
+  </mat-form-field>
+  <mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+    <ng-container matColumnDef="secProjeOgrNo">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Öğrenci Numarası
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{kayit.ogrBilgi.ogrNo}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="secProjeDersAd">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Ders
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{kayit.dersBilgi.dersAd}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="secProjeKonuAd">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Konu
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{kayit.konuBilgi.konuBaslik}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="islemler">
+      <mat-header-cell *matHeaderCellDef> İşlemler
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> 
+      <button mat-icon-button>
+        <mat-icon aria-label="label" color="warn" matTooltip="Seçilen Projeyi Sil" (click)="SecilenProjeSil(kayit)">delete</mat-icon>
+      </button>
+      
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>

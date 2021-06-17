@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="bbac035bfe144c90a600be4f32b44df6" Name="Diagram1" ZoomLevel="98">
+        <EntityTypeShape EntityType="FinalOdeviDBModel.Bolumler" Width="1.5" PointX="0.75" PointY="1.375" />
+        <EntityTypeShape EntityType="FinalOdeviDBModel.Dersler" Width="1.5" PointX="2.875" PointY="4" />
+        <EntityTypeShape EntityType="FinalOdeviDBModel.Konular" Width="1.5" PointX="5.25" PointY="4.25" />
+        <EntityTypeShape EntityType="FinalOdeviDBModel.Ogrenciler" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="FinalOdeviDBModel.Ogretmenler" Width="1.5" PointX="0.625" PointY="4.375" />
+        <EntityTypeShape EntityType="FinalOdeviDBModel.secilenProjeler" Width="1.5" PointX="5.25" PointY="1" />
+        <EntityTypeShape EntityType="FinalOdeviDBModel.Uye" Width="1.5" PointX="9.5" PointY="4.125" />
+        <EntityTypeShape EntityType="FinalOdeviDBModel.Yoneticiler" Width="1.5" PointX="7.5" PointY="1.5" />
+        <AssociationConnector Association="FinalOdeviDBModel.FK_Ogrenciler_ToBolumler" />
+        <AssociationConnector Association="FinalOdeviDBModel.FK_Dersler_ToOgretmenler" />
+        <AssociationConnector Association="FinalOdeviDBModel.FK_Konular_ToDers" />
+        <AssociationConnector Association="FinalOdeviDBModel.FK_secilenProjeler_ToDersler" />
+        <AssociationConnector Association="FinalOdeviDBModel.FK_secilenProjeler_ToKonular" />
+        <AssociationConnector Association="FinalOdeviDBModel.FK_secilenProjeler_ToOgrenci" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

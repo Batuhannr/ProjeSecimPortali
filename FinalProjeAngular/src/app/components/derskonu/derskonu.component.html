@@ -1,0 +1,26 @@
+<div class="container">
+  <button mat-fab color="primary" matTooltip="Geri Git" [routerLink]="['/dersler']">
+    <mat-icon aria-label="label">arrow_back</mat-icon>  
+  </button>
+  <mat-table [dataSource]="dataSource">
+    <ng-container matColumnDef="konuBaslik">
+      <mat-header-cell *matHeaderCellDef > Konu
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{kayit.konuBaslik}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="dersAd">
+      <mat-header-cell *matHeaderCellDef > Ders
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{kayit.dersBilgi.dersAd}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="islemler">
+      <mat-header-cell *matHeaderCellDef> İşlemler
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> 
+      </mat-cell>
+    </ng-container>
+  
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>
